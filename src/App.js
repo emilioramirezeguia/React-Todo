@@ -23,7 +23,7 @@ class App extends React.Component {
     }
 
     this.setState({
-      todos: [...this.state.todos, newTodo],
+      todos: [...this.state.todos, newTodo]
     })
   }
 
@@ -42,12 +42,20 @@ class App extends React.Component {
     })
   }
 
+  clearCompleted = (todoId) => {
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.completed)
+    })
+  }
+
+
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList todos={this.state.todos} completeTodo={this.completeTodo} />
-        <TodoForm todo={this.state.todo} addTodo={this.addTodo} />
+        <TodoForm todo={this.state.todo} addTodo={this.addTodo} clearCompleted={this.clearCompleted} />
       </div>
     );
   }
